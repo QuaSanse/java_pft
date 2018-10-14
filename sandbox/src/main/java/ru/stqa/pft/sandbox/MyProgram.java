@@ -4,8 +4,13 @@ public class MyProgram {
 	
 	public static void main (String[] ards) {
 
-		System.out.println("Hello, World");
+		hello ("world");
+		hello ("user");
+		hello ("Dima");
 	}
 
+	public static void hello (String h) {
+		System.out.println("Hello," + h + "!");
+	}
 
 }
