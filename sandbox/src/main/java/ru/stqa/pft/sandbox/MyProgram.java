@@ -8,17 +8,23 @@ public class MyProgram {
 		hello ("user");
 		hello ("Dima");
 
-		double p1 = 2;
-		double p2 = 4;
-		System.out.println("Расстояние между точками p1 и p2 = " + distance (p1, p2));
+
+		Point p1 = new Point(2, 4);
+		Point p2 = new Point(6, 8);
+		//p1.x = 2;
+		//p1.y = 4;
+		//p2.x = 6;
+		//p2.y = 8;
+
+			System.out.println("Расстояние между точками p1 и p2 = " + distance (p1, p2));
 	}
 
 	public static void hello (String h) {
 		System.out.println("Hello," + h + "!");
 	}
 
-	public static double distance(double p1, double p2) {
-		return p2 - p1;
+	public static double distance(Point p1, Point p2) {
+		return Math.sqrt (p2.x - p1.x) + (p2.y - p1.y);
 	}
 
 }
