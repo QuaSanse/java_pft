@@ -10,4 +10,6 @@ public class Point {
     this.y = y;
 
   }
+
+
 }
