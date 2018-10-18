@@ -5,13 +5,31 @@ import org.testng.annotations.Test;
 
 public class PointTests {
   @Test
-  public void testDistance () {
+  public void testDistanceN1 () {
     Point p1 = new Point(2, 4);
     Point p2 = new Point(6, 8);
+    assert p1.distance(p2) == 5.656854249492381;
+  }
 
-    //double distance = Math.sqrt (((p2.x - p1.x)* (p2.x - p1.x)) + ((p2.y - p1.y)*(p2.y - p1.y)));
+  @Test
+  public void testDistanceN2 () {
+    Point p1 = new Point(2, 4);
+    Point p2 = new Point(6, 8);
+    assert p1.distance(p2) == 5;
+  }
 
-    //assert == 5.656854249492381;
+  @Test
+  public void testDistanceN3 () {
+    Point P1 = new Point(2, 4);
+    Point P2 = new Point(6, 8);
+    Assert.assertEquals(P1.distance(P2), 5.656854249492381);
+  }
+
+  @Test
+  public void testDistanceN4 () {
+    Point P1 = new Point(2, 4);
+    Point P2 = new Point(6, 8);
+    Assert.assertEquals(P1.distance(P2), 5);
   }
 
 }
