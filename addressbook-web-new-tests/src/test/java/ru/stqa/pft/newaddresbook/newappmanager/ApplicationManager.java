@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 public class ApplicationManager {
   WebDriver wd;
 
+  private SessionHelper sessionHelper;
   private ContactHelper contactHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
@@ -22,25 +23,16 @@ public class ApplicationManager {
     groupHelper = new GroupHelper(wd);
     navigationHelper = new NavigationHelper(wd);
     contactHelper = new ContactHelper(wd);
-    login("admin", "secret");
-  }
-
-  public void login(String login, String password) {
-    wd.findElement(By.name("user")).clear();
-    wd.findElement(By.name("user")).sendKeys(login);
-    wd.findElement(By.name("pass")).click();
-    wd.findElement(By.name("pass")).clear();
-    wd.findElement(By.name("pass")).sendKeys(password);
-    wd.findElement(By.xpath("//input[@value='Login']")).click();
+    sessionHelper = new SessionHelper(wd);
+    sessionHelper.login("admin", "secret");
   }
 
   public void stop() {
+    sessionHelper.Logout();
     wd.quit();
   }
 
-  public void Logout() {
-    wd.findElement(By.linkText("Logout")).click();
-  }
+
 
   public boolean isElementPresent(By by) {
     try {

@@ -15,8 +15,6 @@ public class TestBase {
 
   @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
-    appl.Logout();
     appl.stop();
   }
-
 }
