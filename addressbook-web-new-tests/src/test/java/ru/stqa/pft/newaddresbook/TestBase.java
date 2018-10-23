@@ -5,12 +5,13 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
-public class TastBase {
+public class TestBase {
   private WebDriver wd;
 
   @BeforeMethod(alwaysRun = true)
@@ -92,5 +93,53 @@ public class TastBase {
     } catch (NoAlertPresentException e) {
       return false;
     }
+  }
+
+  protected void returnToHomePage() {
+    wd.findElement(By.linkText("home page")).click();
+  }
+
+  protected void submitContactCreation() {
+    wd.findElement(By.xpath("//input[21]")).click();
+  }
+
+  protected void fillContactForm(ContactData contactData) {
+    wd.findElement(By.name("firstname")).click();
+    wd.findElement(By.name("firstname")).clear();
+    wd.findElement(By.name("firstname")).sendKeys(contactData.getFirstname());
+    wd.findElement(By.name("middlename")).click();
+    wd.findElement(By.name("middlename")).clear();
+    wd.findElement(By.name("middlename")).sendKeys(contactData.getMiddlename());
+    wd.findElement(By.name("lastname")).click();
+    wd.findElement(By.name("lastname")).clear();
+    wd.findElement(By.name("lastname")).sendKeys(contactData.getLastname());
+    wd.findElement(By.name("nickname")).click();
+    wd.findElement(By.name("nickname")).clear();
+    wd.findElement(By.name("nickname")).sendKeys(contactData.getNickname());
+    wd.findElement(By.name("address")).click();
+    wd.findElement(By.name("address")).clear();
+    wd.findElement(By.name("address")).sendKeys(contactData.getAdress());
+    wd.findElement(By.name("mobile")).click();
+    wd.findElement(By.name("mobile")).clear();
+    wd.findElement(By.name("mobile")).sendKeys(contactData.getTelmobile());
+    wd.findElement(By.name("work")).click();
+    wd.findElement(By.name("work")).clear();
+    wd.findElement(By.name("work")).sendKeys(contactData.getTelwork());
+    wd.findElement(By.name("email")).click();
+    wd.findElement(By.name("email")).clear();
+    wd.findElement(By.name("email")).sendKeys(contactData.getEmail());
+    wd.findElement(By.name("bday")).click();
+    new Select(wd.findElement(By.name("bday"))).selectByVisibleText(contactData.getBirthdaydate());
+    wd.findElement(By.xpath("//option[@value='1']")).click();
+    wd.findElement(By.name("bmonth")).click();
+    new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(contactData.getBirthdaymonth());
+    wd.findElement(By.xpath("//option[@value='January']")).click();
+    wd.findElement(By.name("byear")).click();
+    wd.findElement(By.name("byear")).clear();
+    wd.findElement(By.name("byear")).sendKeys(contactData.getBirthdayyear());
+  }
+
+  protected void initContactCreation() {
+    wd.findElement(By.linkText("add new")).click();
   }
 }

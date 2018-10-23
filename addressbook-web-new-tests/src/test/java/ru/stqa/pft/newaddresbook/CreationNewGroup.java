@@ -2,7 +2,7 @@ package ru.stqa.pft.newaddresbook;
 
 import org.testng.annotations.Test;
 
-public class CreationNewGroup extends TastBase {
+public class CreationNewGroup extends TestBase {
 
   @Test
   public void testCreationNewGroup() throws Exception {
