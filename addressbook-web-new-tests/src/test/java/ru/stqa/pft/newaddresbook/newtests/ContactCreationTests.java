@@ -3,7 +3,7 @@ package ru.stqa.pft.newaddresbook.newtests;
 import org.testng.annotations.*;
 import ru.stqa.pft.newaddresbook.newmodel.ContactData;
 
-public class CreationContact extends TestBase {
+public class ContactCreationTests extends TestBase {
 
   @Test
   public void testCreationContact() throws Exception {
