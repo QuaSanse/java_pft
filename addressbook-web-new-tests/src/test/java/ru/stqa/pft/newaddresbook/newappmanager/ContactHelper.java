@@ -47,4 +47,16 @@ public class ContactHelper extends HelperBase {
   public void submitContactModification() {
     click(By.name("update"));
   }
+
+  public void selectContactDelerion() {
+    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td/input"));
+  }
+
+  public void submitContactDelerion() {
+    click(By.xpath("//input[@value='Delete']"));
+  }
+
+  public void modalwindowContact() {
+    wd.switchTo().alert().accept();
+  }
 }
