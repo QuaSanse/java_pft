@@ -12,8 +12,22 @@ public class ContactData {
   private final String birthdaydate;
   private final String birthdaymonth;
   private final String birthdayyear;
+  private String group;
 
-  public ContactData(String firstname, String middlename, String lastname, String nickname, String adress, String telmobile, String telwork, String email, String Birthdaydate, String Birthdaymonth, String Birthdayyear) {
+  public ContactData(String firstname,
+                     String middlename,
+                     String lastname,
+                     String nickname,
+                     String adress,
+                     String telmobile,
+                     String telwork,
+                     String email,
+                     String Birthdaydate,
+                     String Birthdaymonth,
+                     String Birthdayyear,
+                     String Group
+  )
+  {
     this.firstname = firstname;
     this.middlename = middlename;
     this.lastname = lastname;
@@ -22,9 +36,10 @@ public class ContactData {
     this.telmobile = telmobile;
     this.telwork = telwork;
     this.email = email;
-    birthdaydate = Birthdaydate;
-    birthdaymonth = Birthdaymonth;
-    birthdayyear = Birthdayyear;
+    this.birthdaydate = Birthdaydate;
+    this.birthdaymonth = Birthdaymonth;
+    this.birthdayyear = Birthdayyear;
+    this.group = Group;
   }
 
   public String getFirstname() {
@@ -69,5 +84,9 @@ public class ContactData {
 
   public String getBirthdayyear() {
     return birthdayyear;
+  }
+
+  public String getGroup() {
+    return group;
   }
 }
