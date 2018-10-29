@@ -6,8 +6,8 @@ public class ContactDeletionTests extends TestBase {
 
   @Test
   public void testDeletionContact () {
-    appl.getContactHelper().selectContactDelerion();
-    appl.getContactHelper().submitContactDelerion();
-    appl.getContactHelper().modalwindowContact();
+    app.getContactHelper().selectContactDelerion();
+    app.getContactHelper().submitContactDelerion();
+    app.getContactHelper().modalwindowContact();
   }
 }

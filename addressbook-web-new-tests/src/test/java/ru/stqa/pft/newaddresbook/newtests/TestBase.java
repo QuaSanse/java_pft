@@ -7,15 +7,15 @@ import ru.stqa.pft.newaddresbook.newappmanager.ApplicationManager;
 
 public class TestBase {
 
-  protected final ApplicationManager appl = new ApplicationManager(BrowserType.FIREFOX);
+  protected final ApplicationManager app = new ApplicationManager(BrowserType.FIREFOX);
 
   @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
-    appl.init();
+    app.init();
   }
 
   @AfterMethod(alwaysRun = true)
   public void tearDown() throws Exception {
-    appl.stop();
+    app.stop();
   }
 }
