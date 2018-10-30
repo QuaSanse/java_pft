@@ -56,7 +56,8 @@ public class ContactHelper extends HelperBase {
   }
 
   public void selectContactDelerion() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td/input"));
+    click(By.name("selected[]"));
+    //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td/input"));
   }
 
   public void submitContactDelerion() {
@@ -65,5 +66,17 @@ public class ContactHelper extends HelperBase {
 
   public void modalwindowContact() {
     wd.switchTo().alert().accept();
+  }
+
+  public void createContact(ContactData contact, boolean creation) {
+    initContactCreation();
+    fillContactForm(contact, true);
+    submitContactCreation();
+    returnToHomePage();
+  }
+
+  public boolean isThereContact() {
+    return isElementPresent(By.name("selected[]"));
+    //return isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td/input"));
   }
 }
