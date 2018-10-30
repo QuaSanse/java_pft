@@ -79,4 +79,8 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
     //return isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td/input"));
   }
+
+  public boolean isThereContactMod() {
+    return isElementPresent(By.xpath("//img[@alt='Edit']"));
+  }
 }
