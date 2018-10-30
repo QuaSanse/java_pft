@@ -6,6 +6,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.newaddresbook.newmodel.ContactData;
 
+import java.util.Objects;
+
 public class ContactHelper extends HelperBase {
 
   public ContactHelper(WebDriver wd) {
@@ -37,7 +39,9 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//option[@value='January']"));
     type(By.name("byear"), contactData.getBirthdayyear());
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      if (!Objects.equals(contactData.getGroup(), contactData.getGroup())) {
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
