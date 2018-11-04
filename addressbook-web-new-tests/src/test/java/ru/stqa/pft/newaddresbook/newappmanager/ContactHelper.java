@@ -17,6 +17,9 @@ public class ContactHelper extends HelperBase {
   public void returnToHomePage() {
     click(By.linkText("home page"));
   }
+  public void returnToHomePageLink() {
+    click(By.linkText("home"));
+  }
 
   public void submitContactCreation() {
     click(By.xpath("//input[21]"));
@@ -59,16 +62,15 @@ public class ContactHelper extends HelperBase {
     click(By.name("update"));
   }
 
-  public void selectContactDelerion() {
+  public void selectContactDeletion() {
     click(By.name("selected[]"));
-    //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td/input"));
   }
 
-  public void submitContactDelerion() {
+  public void submitContactDeletion() {
     click(By.xpath("//input[@value='Delete']"));
   }
 
-  public void modalwindowContact() {
+  public void modalWindowContact() {
     wd.switchTo().alert().accept();
   }
 
@@ -86,5 +88,9 @@ public class ContactHelper extends HelperBase {
 
   public boolean isThereContactMod() {
     return isElementPresent(By.xpath("//img[@alt='Edit']"));
+  }
+
+  public int getContactCount() {
+    return wd.findElements(By.name("selected[]")).size();
   }
 }
