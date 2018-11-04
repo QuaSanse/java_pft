@@ -26,7 +26,7 @@ public class ContactDeletionTests extends TestBase {
                       "test1"
               ),true);
     }
-    app.getContactHelper().selectContactDeletion();
+    app.getContactHelper().selectContactDeletion(before - 1);
     app.getContactHelper().submitContactDeletion();
     app.getContactHelper().modalWindowContact();
     //app.getContactHelper().returnToHomePage();

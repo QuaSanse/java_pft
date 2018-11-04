@@ -26,9 +26,9 @@ public class ContactModificationTests extends TestBase {
               "test1"
       ),true);
     }
-    app.getContactHelper().editContactModification();
+    app.getContactHelper().editContactModification(before - 1);
     app.getContactHelper().fillContactForm(new ContactData(
-            "namme",
+            "namme2",
             "middlename",
             "lastname",
             "nickname",
