@@ -2,10 +2,13 @@ package ru.stqa.pft.newaddresbook.newappmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.newaddresbook.newmodel.ContactData;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class ContactHelper extends HelperBase {
@@ -27,20 +30,8 @@ public class ContactHelper extends HelperBase {
 
   public void fillContactForm(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getFirstname());
-    type(By.name("middlename"), contactData.getMiddlename());
     type(By.name("lastname"), contactData.getLastname());
-    type(By.name("nickname"), contactData.getNickname());
     type(By.name("address"), contactData.getAdress());
-    type(By.name("mobile"), contactData.getTelmobile());
-    type(By.name("work"), contactData.getTelwork());
-    type(By.name("email"), contactData.getEmail());
-    click(By.name("bday"));
-    select(By.name("bday"), contactData.getBirthdaydate());
-    click(By.xpath("//option[@value='1']"));
-    click(By.name("bmonth"));
-    select(By.name("bmonth"), contactData.getBirthdaymonth());
-    click(By.xpath("//option[@value='January']"));
-    type(By.name("byear"), contactData.getBirthdayyear());
     if (creation) {
       if (!Objects.equals(contactData.getGroup(), contactData.getGroup())) {
         new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
@@ -94,5 +85,19 @@ public class ContactHelper extends HelperBase {
 
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<ContactData> getContactList() {
+    List<ContactData> contacts = new ArrayList<ContactData>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=entry]"));
+    for (WebElement element: elements) {
+      //int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      String lastname = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
+      String firstname = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
+      String adress = element.findElement(By.cssSelector("td:nth-child(4)")).getText();
+      ContactData contact = new ContactData(firstname, lastname, adress, null);
+      contacts.add(contact);
+    }
+    return contacts;
   }
 }

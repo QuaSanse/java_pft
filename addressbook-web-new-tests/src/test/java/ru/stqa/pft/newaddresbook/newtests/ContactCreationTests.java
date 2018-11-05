@@ -3,29 +3,24 @@ package ru.stqa.pft.newaddresbook.newtests;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import ru.stqa.pft.newaddresbook.newmodel.ContactData;
+import ru.stqa.pft.newaddresbook.newmodel.GroupData;
+
+import java.util.List;
 
 public class ContactCreationTests extends TestBase {
 
   @Test
   public void testCreationContact() throws Exception {
     app.getNavigationHelper().gotoHomePage();
-    int before = app.getContactHelper().getContactCount();
+    List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().createContact(new ContactData(
-            "namme",
-            "middlename",
+            "Firstname",
             "lastname",
-            "nickname",
             "adress",
-            "telmobile",
-            "telwork",
-            "email",
-            "1",
-            "January",
-            "2000",
-            "test1"
+            "Group"
     ), true);
-    int after = app.getContactHelper().getContactCount();
-    Assert.assertEquals(after, before + 1);
+    List<ContactData> after = app.getContactHelper().getContactList();
+    Assert.assertEquals(after.size(), before.size() + 1);
   }
 
 }
