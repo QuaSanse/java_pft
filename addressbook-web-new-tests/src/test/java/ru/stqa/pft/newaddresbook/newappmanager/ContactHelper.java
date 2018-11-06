@@ -91,11 +91,11 @@ public class ContactHelper extends HelperBase {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=entry]"));
     for (WebElement element: elements) {
-      //int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      String id = element.findElement(By.tagName("input")).getAttribute("value");
       String lastname = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
       String firstname = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
       String adress = element.findElement(By.cssSelector("td:nth-child(4)")).getText();
-      ContactData contact = new ContactData(firstname, lastname, adress, null);
+      ContactData contact = new ContactData(id, firstname, lastname, adress, null);
       contacts.add(contact);
     }
     return contacts;
