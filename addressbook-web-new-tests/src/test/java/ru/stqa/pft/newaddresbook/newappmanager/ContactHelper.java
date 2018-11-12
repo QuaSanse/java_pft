@@ -68,6 +68,7 @@ public class ContactHelper extends HelperBase {
     initContactCreation();
     fillContactForm(contact, true);
     submitContactCreation();
+    contactCache = null;
     returnToHomePage();
   }
 
@@ -75,6 +76,7 @@ public class ContactHelper extends HelperBase {
     editContactModificationById(contact.getId());
     fillContactForm(contact, false);
     submitContactModification();
+    contactCache = null;
     returnToHomePage();
   }
 
@@ -82,6 +84,7 @@ public class ContactHelper extends HelperBase {
     selectContactDeletionById(contact.getId());
     submitContactDeletion();
     modalWindowContact();
+    contactCache = null;
     //returnToHomePage();
     returnToHomePageLink();
   }
@@ -99,16 +102,21 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
+  private Contacts contactCache = null;
+
   public Contacts all() {
-    Contacts contacts = new Contacts();
+    if (contactCache != null) {
+      return new Contacts(contactCache);
+    }
+    contactCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=entry]"));
     for (WebElement element: elements) {
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       String lastname = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
       String firstname = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
       String adress = element.findElement(By.cssSelector("td:nth-child(4)")).getText();
-      contacts.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname).withAdress(adress));
+      contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname).withAdress(adress));
     }
-    return contacts;
+    return new Contacts(contactCache);
   }
 }
