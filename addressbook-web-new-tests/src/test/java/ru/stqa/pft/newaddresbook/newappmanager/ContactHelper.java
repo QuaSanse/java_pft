@@ -98,7 +98,7 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.xpath("//img[@alt='Edit']"));
   }
 
-  public int getContactCount() {
+  public int count() {
     return wd.findElements(By.name("selected[]")).size();
   }
 
@@ -118,5 +118,25 @@ public class ContactHelper extends HelperBase {
       contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname).withAdress(adress));
     }
     return new Contacts(contactCache);
+  }
+
+  public ContactData infoFromEditorForm(ContactData contact) {
+    initContactModificacionById(contact.getId());
+    String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+    String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+    String home = wd.findElement(By.name("home")).getAttribute("value");
+    String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+    String work = wd.findElement(By.name("work")).getAttribute("value");
+    wd.navigate().back();
+    return new ContactData()
+            .withId(contact.getId())
+            .withFirstname(Firstname)
+            .withLastname(contact.getLastname())
+            .withHomePhone(contact.getHomePhone())
+            .withMobilePhone(contact.getMobilePhone())
+            .withWorkPhone(contact.getWorkPhone());
+  }
+
+  private void initContactModificacionById(int id) {
   }
 }

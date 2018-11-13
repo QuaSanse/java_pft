@@ -6,6 +6,9 @@ public class ContactData {
   private String lastname;
   private String adress;
   private String group;
+  private String homePhone;
+  private String mobilePhone;
+  private String workPhone;
 
   public ContactData withId(int id) {
     this.id = id;
@@ -27,25 +30,42 @@ public class ContactData {
     this.group = group;
     return this;
   }
+  public ContactData withHomePhone(String homePhone) {
+    this.homePhone = homePhone;
+    return this;
+  }
+  public ContactData withMobilePhone(String mobilePhone) {
+    this.mobilePhone = mobilePhone;
+    return this;
+  }
+  public ContactData withWorkPhone(String workPhone) {
+    this.workPhone = workPhone;
+    return this;
+  }
 
   public int getId() {
     return id;
   }
-
   public String getFirstname() {
     return firstname;
   }
-
   public String getLastname() {
     return lastname;
   }
-
   public String getAdress() {
     return adress;
   }
-
   public String getGroup() {
     return group;
+  }
+  public String getHomePhone() {
+        return homePhone;
+    }
+  public String getMobilePhone() {
+    return mobilePhone;
+  }
+  public String getWorkPhone() {
+    return workPhone;
   }
 
   @Override
@@ -79,4 +99,6 @@ public class ContactData {
     result = 31 * result + (adress != null ? adress.hashCode() : 0);
     return result;
   }
+
+
 }
