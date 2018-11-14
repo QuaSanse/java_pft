@@ -110,12 +110,22 @@ public class ContactHelper extends HelperBase {
     }
     contactCache = new Contacts();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=entry]"));
-    for (WebElement element: elements) {
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      String lastname = element.findElement(By.cssSelector("td:nth-child(2)")).getText();
-      String firstname = element.findElement(By.cssSelector("td:nth-child(3)")).getText();
-      String adress = element.findElement(By.cssSelector("td:nth-child(4)")).getText();
-      contactCache.add(new ContactData().withId(id).withFirstname(firstname).withLastname(lastname).withAdress(adress));
+    for (WebElement element : elements) {
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      String lastname = cells.get(1).getText();
+      String firstname = cells.get(2).getText();
+      String adress = cells.get(3).getText();
+      String[] phones = cells.get(5).getText().split("\n");
+      contactCache.add(new ContactData()
+              .withId(id)
+              .withFirstname(firstname)
+              .withLastname(lastname)
+              .withAdress(adress)
+              .withHomePhone(phones[0])
+              .withMobilePhone(phones[1])
+              .withWorkPhone(phones[2])
+      );
     }
     return new Contacts(contactCache);
   }
@@ -130,13 +140,15 @@ public class ContactHelper extends HelperBase {
     wd.navigate().back();
     return new ContactData()
             .withId(contact.getId())
-            .withFirstname(Firstname)
-            .withLastname(contact.getLastname())
-            .withHomePhone(contact.getHomePhone())
-            .withMobilePhone(contact.getMobilePhone())
-            .withWorkPhone(contact.getWorkPhone());
+            .withFirstname(firstname)
+            .withLastname(lastname)
+            .withHomePhone(home)
+            .withMobilePhone(mobile)
+            .withWorkPhone(work);
   }
 
   private void initContactModificacionById(int id) {
+    wd.findElement(By.xpath("//input[@value='"+id+"']//ancestor::td//following-sibling::td//img[@title='Edit']")).click();
+    //wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=$s']", id))).click();
   }
 }
