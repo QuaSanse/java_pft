@@ -4,7 +4,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.newaddresbook.newmodel.ContactData;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -20,7 +19,7 @@ public class ContactPhoneTests extends TestBase {
       app.contact().create(new ContactData()
                       .withFirstname("Firstname")
                       .withLastname("lastname")
-                      .withAdress("adress")
+                      .withAddress("address")
                       .withGroup("Group")
               , true);
     }
@@ -32,7 +31,15 @@ public class ContactPhoneTests extends TestBase {
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactInfoFromEditorForm = app.contact().infoFromEditorForm(contact);
 
+    assertThat(contact.getAddress(), equalTo(contactInfoFromEditorForm.getAddress()));
     assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditorForm)));
+    assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditorForm)));
+  }
+
+  private String mergeEmails(ContactData contact) {
+    return Arrays.asList(contact.getEmail(), contact.getEmail2(), contact.getEmail3())
+            .stream().filter((e) -> ! e.equals(""))
+            .collect(Collectors.joining("\n"));
   }
 
   private String mergePhones(ContactData contact) {

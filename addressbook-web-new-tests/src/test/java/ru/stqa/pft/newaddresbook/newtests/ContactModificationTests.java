@@ -17,7 +17,7 @@ public class ContactModificationTests extends TestBase {
       app.contact().create(new ContactData()
                .withFirstname("Firstname")
                .withLastname("lastname")
-               .withAdress("adress")
+               .withAddress("adress")
                .withGroup("Group")
       , true);
     }
@@ -31,7 +31,7 @@ public class ContactModificationTests extends TestBase {
             .withId(modifiedContact.getId())
             .withFirstname("Firstname")
             .withLastname("lastname")
-            .withAdress("adress")
+            .withAddress("adress")
             .withGroup("Group")
     ;
     app.contact().modify(contact);
