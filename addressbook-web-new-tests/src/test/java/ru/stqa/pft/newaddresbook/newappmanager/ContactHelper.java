@@ -8,7 +8,8 @@ import org.testng.Assert;
 import ru.stqa.pft.newaddresbook.newmodel.ContactData;
 import ru.stqa.pft.newaddresbook.newmodel.Contacts;
 
-import java.util.*;
+import java.util.List;
+import java.util.Objects;
 
 public class ContactHelper extends HelperBase {
 
@@ -19,6 +20,7 @@ public class ContactHelper extends HelperBase {
   public void returnToHomePage() {
     click(By.linkText("home page"));
   }
+
   public void returnToHomePageLink() {
     click(By.linkText("home"));
   }
@@ -46,7 +48,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void editContactModificationById(int id) {
-    wd.findElement(By.xpath("//input[@value='"+id+"']//ancestor::td//following-sibling::td//img[@title='Edit']")).click();
+    wd.findElement(By.xpath("//input[@value='" + id + "']//ancestor::td//following-sibling::td//img[@title='Edit']")).click();
   }
 
   public void submitContactModification() {
@@ -154,11 +156,11 @@ public class ContactHelper extends HelperBase {
             .withEmail(email)
             .withEmail2(email2)
             .withEmail3(email3)
-     ;
+            ;
   }
 
   private void initContactModificacionById(int id) {
-    wd.findElement(By.xpath("//input[@value='"+id+"']//ancestor::td//following-sibling::td//img[@title='Edit']")).click();
+    wd.findElement(By.xpath("//input[@value='" + id + "']//ancestor::td//following-sibling::td//img[@title='Edit']")).click();
     //wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=$s']", id))).click();
   }
 }
