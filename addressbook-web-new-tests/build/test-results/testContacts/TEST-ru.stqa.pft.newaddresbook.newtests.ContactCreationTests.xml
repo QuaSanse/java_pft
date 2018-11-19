@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.newaddresbook.newtests.ContactCreationTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2018-11-19T17:20:11" hostname="Dima-vt" time="10.439">
+  <properties/>
+  <testcase name="testCreationContact[0](ContactData{id='2147483647', firstname='firstname 0', lastname='lastname 0', address='address 0'})" classname="ru.stqa.pft.newaddresbook.newtests.ContactCreationTests" time="4.856"/>
+  <testcase name="testCreationContact[1](ContactData{id='2147483647', firstname='firstname 1', lastname='lastname 1', address='address 1'})" classname="ru.stqa.pft.newaddresbook.newtests.ContactCreationTests" time="2.687"/>
+  <testcase name="testCreationContact[2](ContactData{id='2147483647', firstname='firstname 2', lastname='lastname 2', address='address 2'})" classname="ru.stqa.pft.newaddresbook.newtests.ContactCreationTests" time="2.896"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

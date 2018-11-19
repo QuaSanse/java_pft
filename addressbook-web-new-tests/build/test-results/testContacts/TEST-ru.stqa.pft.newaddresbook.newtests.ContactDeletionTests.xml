@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.newaddresbook.newtests.ContactDeletionTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2018-11-19T17:20:25" hostname="Dima-vt" time="2.002">
+  <properties/>
+  <testcase name="testDeletionContact" classname="ru.stqa.pft.newaddresbook.newtests.ContactDeletionTests" time="2.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
