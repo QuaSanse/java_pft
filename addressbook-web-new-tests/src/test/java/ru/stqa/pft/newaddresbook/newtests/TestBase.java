@@ -7,7 +7,9 @@ import ru.stqa.pft.newaddresbook.newappmanager.ApplicationManager;
 
 public class TestBase {
 
-  protected static final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
+  protected static final ApplicationManager app
+          = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
+  //Param -Dbrowser=firefox
 
   @BeforeSuite(alwaysRun = true)
   public void setUp() throws Exception {
