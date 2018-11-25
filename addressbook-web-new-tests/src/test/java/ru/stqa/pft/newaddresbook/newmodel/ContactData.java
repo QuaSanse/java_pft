@@ -1,8 +1,6 @@
 package ru.stqa.pft.newaddresbook.newmodel;
 
-import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
-import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -62,7 +60,7 @@ public class ContactData {
 
   @Column(name = "photo")
   @Type(type = "text")
-  private String photo;
+   private String photo;
 
 
   public ContactData withId(int id) {
@@ -170,7 +168,7 @@ public class ContactData {
   @Override
   public String toString() {
     return "ContactData{" +
-            "id='" + id + '\'' +
+            "id=" + id +
             ", firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
             ", address='" + address + '\'' +
