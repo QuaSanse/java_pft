@@ -196,6 +196,4 @@ public class ContactData {
     result = 31 * result + (address != null ? address.hashCode() : 0);
     return result;
   }
-
-
 }

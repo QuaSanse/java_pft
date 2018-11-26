@@ -6,7 +6,8 @@ import ru.stqa.pft.newaddresbook.newmodel.ContactData;
 import ru.stqa.pft.newaddresbook.newmodel.Contacts;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
+//import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.CoreMatchers.equalTo;
 
 public class ContactModificationTests extends TestBase {
 
