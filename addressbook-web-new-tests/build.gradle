@@ -30,6 +30,11 @@ task testGroups(type: Test) {
         systemProperty 'target', "${target}"
     }
     // Param gradlew -Ptarget=local testGroups
+
+    if (project.hasProperty('verifyUI')) {
+        systemProperty 'verifyUI', "${verifyUI}"
+    }
+    // Param gradlew -DverifyUI testGroups
 }
 task testContacts(type: Test) {
     useTestNG {
@@ -44,4 +49,9 @@ task testContacts(type: Test) {
         systemProperty 'target', "${target}"
     }
     // Param gradlew -Ptarget=local testContacts
+
+    if (project.hasProperty('verifyUI')) {
+        systemProperty 'verifyUI', "${verifyUI}"
+    }
+    // Param gradlew -DverifyUI testContacts
 }
