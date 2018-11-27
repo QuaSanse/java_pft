@@ -18,7 +18,7 @@ public class ContactDeletionTests extends TestBase {
                       .withFirstname("Firstname")
                       .withLastname("lastname")
                       .withAddress("adress")
-                      .withGroup("Group")
+                      //.withGroup("Group")
               , true);
     }
   }

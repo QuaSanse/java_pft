@@ -18,7 +18,7 @@ public class ContactModificationTests extends TestBase {
                       .withFirstname("Firstname")
                       .withLastname("lastname")
                       .withAddress("adress")
-                      .withGroup("Group")
+                      //.withGroup("Group")
               , true);
     }
 }
@@ -32,7 +32,7 @@ public class ContactModificationTests extends TestBase {
             .withFirstname("Firstname")
             .withLastname("lastname")
             .withAddress("adress")
-            .withGroup("Group")
+            //.withGroup("Group")
     ;
     app.goTo().contactPage();
     app.contact().modify(contact);

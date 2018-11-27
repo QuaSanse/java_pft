@@ -20,7 +20,7 @@ public class ContactPhoneTests extends TestBase {
                       .withFirstname("Firstname")
                       .withLastname("lastname")
                       .withAddress("address")
-                      .withGroup("Group")
+                      //.withGroup("Group")
               , true);
     }
   }
