@@ -167,6 +167,10 @@ public class ContactData {
     return new Groups(groups);
   }
 
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
+  }
 
   @Override
   public String toString() {
@@ -175,6 +179,7 @@ public class ContactData {
             ", firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
             ", address='" + address + '\'' +
+            ", groups=" + groups +
             '}';
   }
 
@@ -188,7 +193,8 @@ public class ContactData {
     if (id != that.id) return false;
     if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
     if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
-    return address != null ? address.equals(that.address) : that.address == null;
+    if (address != null ? !address.equals(that.address) : that.address != null) return false;
+    return groups != null ? groups.equals(that.groups) : that.groups == null;
   }
 
   @Override
@@ -197,11 +203,7 @@ public class ContactData {
     result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
     result = 31 * result + (address != null ? address.hashCode() : 0);
+    result = 31 * result + (groups != null ? groups.hashCode() : 0);
     return result;
-  }
-
-  public ContactData inGroup(GroupData group) {
-    groups.add(group);
-    return this;
   }
 }
