@@ -3,10 +3,12 @@ package ru.stqa.pft.newaddresbook.newtests;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.thoughtworks.xstream.XStream;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.newaddresbook.newmodel.ContactData;
 import ru.stqa.pft.newaddresbook.newmodel.Contacts;
+import ru.stqa.pft.newaddresbook.newmodel.GroupData;
 import ru.stqa.pft.newaddresbook.newmodel.Groups;
 
 import java.io.BufferedReader;
@@ -52,6 +54,14 @@ public class ContactCreationTests extends TestBase {
       List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>() {
       }.getType());
       return contacts.stream().map((c) -> new Object[]{c}).collect(Collectors.toList()).iterator();
+    }
+  }
+
+  @BeforeMethod
+  public void ensurePreconditions() {
+    if (app.db().groups().size() == 0) {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("test1"));
     }
   }
 
