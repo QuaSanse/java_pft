@@ -9,7 +9,6 @@ import ru.stqa.pft.newaddresbook.newmodel.ContactData;
 import ru.stqa.pft.newaddresbook.newmodel.Contacts;
 
 import java.util.List;
-import java.util.Objects;
 
 public class ContactHelper extends HelperBase {
 
@@ -60,8 +59,9 @@ public class ContactHelper extends HelperBase {
     click(By.name("update"));
   }
 
-  public void selectContactDeletionById(int id) {
+  public void selectContactById(int id) {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+    //wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
   }
 
   public void submitContactDeletion() {
@@ -90,7 +90,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void delete(ContactData contact) {
-    selectContactDeletionById(contact.getId());
+    selectContactById(contact.getId());
     submitContactDeletion();
     modalWindowContact();
     contactCache = null;
@@ -174,5 +174,14 @@ public class ContactHelper extends HelperBase {
     //wd.findElement(By.xpath(String.format("//input[@value='%s']/../../td[8]/a", id))).click();
     //wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a", id))).click();
     //wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
+  }
+  public void selectToGroup() {
+    wd.findElement(By.name("to_group")).click();
+  }
+  public void selectedNameGroup() {
+    wd.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Select all'])[1]/following::option[1]")).click();
+  }
+  public void inputAdd() {
+    wd.findElement(By.name("add")).click();
   }
 }
