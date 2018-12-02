@@ -184,4 +184,8 @@ public class ContactHelper extends HelperBase {
   public void inputAdd() {
     wd.findElement(By.name("add")).click();
   }
+
+  public void inputGroupPage() {
+    wd.findElement(By.linkText("group page \"test1\"")).click();
+  }
 }

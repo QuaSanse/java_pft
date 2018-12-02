@@ -6,8 +6,7 @@ import ru.stqa.pft.newaddresbook.newmodel.ContactData;
 import ru.stqa.pft.newaddresbook.newmodel.Contacts;
 import ru.stqa.pft.newaddresbook.newmodel.GroupData;
 
-
-public class AddContactInGroup extends TestBase {
+public class DeletionContactFromGroup extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() {
     //Добавляем группу
@@ -22,30 +21,16 @@ public class AddContactInGroup extends TestBase {
                       .withFirstname("Firstname")
                       .withLastname("lastname")
                       .withAddress("adress")
-              //.withGroup("Group")
+                      //.withGroup("Group")
               , true);
     }
   }
 
   @Test
-  public void testAddContactInGroup() {
+  public void testDeletionContactFromGroup() {
     Contacts before = app.db().contacts();
     ContactData selectContact = before.iterator().next();
     app.goTo().contactPage();
-    ContactData contact = new ContactData();
-    //выбор контакта
-    app.contact().selectContactById(selectContact.getId());
-    //wd.findElement(By.id("151")).click();
-    //раскрытие списка групп
-    app.contact().selectToGroup();
-    //выбор из списка группу
-    app.contact().selectedNameGroup();
-    //клик по кнопке добавления
-    app.contact().inputAdd();
-    //переход по ссылке
-    //app.contact().returnToHomePage();
-    app.contact().inputGroupPage();
   }
-
-
 }
+
