@@ -188,4 +188,29 @@ public class ContactHelper extends HelperBase {
   public void inputGroupPage() {
     wd.findElement(By.linkText("group page \"test1\"")).click();
   }
+
+  public void deleteContactFromGroup(int contactID, int groupID) {
+    //Клик по селектору group
+    selectGroupRight();
+    //Выбор группы по ID
+    selectGroupById(groupID);
+    //Выбор контакта по ID
+    selectContactById(contactID);
+    //Клик по кнопке удаления
+    inputRemove();
+    //Клик по ссылке для возврата
+    wd.findElement(By.linkText("home")).click();
+  }
+
+  public void selectGroupRight() {
+    wd.findElement(By.name("group")).click();
+  }
+
+  public void inputRemove() {
+    wd.findElement(By.name("remove")).click();
+  }
+
+  public void selectGroupById(int groupID) {
+    wd.findElement(By.cssSelector("select[name='group'] option[value='" + groupID + "'")).click();
+  }
 }

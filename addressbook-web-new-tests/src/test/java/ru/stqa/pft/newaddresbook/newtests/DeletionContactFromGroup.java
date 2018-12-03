@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.newaddresbook.newmodel.ContactData;
 import ru.stqa.pft.newaddresbook.newmodel.Contacts;
 import ru.stqa.pft.newaddresbook.newmodel.GroupData;
+import ru.stqa.pft.newaddresbook.newmodel.Groups;
 
 public class DeletionContactFromGroup extends TestBase {
   @BeforeMethod
@@ -21,16 +22,22 @@ public class DeletionContactFromGroup extends TestBase {
                       .withFirstname("Firstname")
                       .withLastname("lastname")
                       .withAddress("adress")
-                      //.withGroup("Group")
+              //.withGroup("Group")
               , true);
     }
   }
 
   @Test
   public void testDeletionContactFromGroup() {
-    Contacts before = app.db().contacts();
-    ContactData selectContact = before.iterator().next();
+    //Выбираем все группы
+    Groups groups = app.db().groups();
+    GroupData group = groups.iterator().next();
+    //Выбираем все контакты
+    Contacts contacts = app.db().contacts();
+    ContactData contact = contacts.iterator().next();
+
     app.goTo().contactPage();
+    app.contact().deleteContactFromGroup(contact.getId(), group.getId());
   }
 }
 
