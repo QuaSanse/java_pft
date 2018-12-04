@@ -1,0 +1,32 @@
+apply plugin: 'java'
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.testng:testng:7.0.0-beta1'
+    compile 'org.seleniumhq.selenium:selenium-java:3.141.5'
+    compile 'org.hamcrest:java-hamcrest:2.0.0.0'
+}
+
+test {
+    useTestNG {
+        suites 'src/test/resources/testng.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    // Param gradlew -Pbrowser=firefox testGroups
+    
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+    // Param gradlew -Ptarget=local testGroups
+
+    if (project.hasProperty('verifyUI')) {
+        systemProperty 'verifyUI', "${verifyUI}"
+    }
+    // Param gradlew -DverifyUI testGroups
+}
