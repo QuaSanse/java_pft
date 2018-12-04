@@ -5,6 +5,10 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.newaddresbook.newmodel.ContactData;
 import ru.stqa.pft.newaddresbook.newmodel.Contacts;
 import ru.stqa.pft.newaddresbook.newmodel.GroupData;
+import ru.stqa.pft.newaddresbook.newmodel.Groups;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 
 public class AddContactInGroup extends TestBase {
@@ -29,10 +33,13 @@ public class AddContactInGroup extends TestBase {
 
   @Test
   public void testAddContactInGroup() {
+    Groups group = app.db().groups();
     Contacts before = app.db().contacts();
+
+    GroupData addedGroup = group.iterator().next();
     ContactData selectContact = before.iterator().next();
+
     app.goTo().contactPage();
-    ContactData contact = new ContactData();
     //выбор контакта
     app.contact().selectContactById(selectContact.getId());
     //wd.findElement(By.id("151")).click();
@@ -45,6 +52,9 @@ public class AddContactInGroup extends TestBase {
     //переход по ссылке
     //app.contact().returnToHomePage();
     app.contact().inputGroupPage();
+
+    Contacts after = app.db().contacts();
+    assertThat(after, equalTo(before.without(selectContact).withAdded(selectContact.inGroup(addedGroup))));
   }
 
 
