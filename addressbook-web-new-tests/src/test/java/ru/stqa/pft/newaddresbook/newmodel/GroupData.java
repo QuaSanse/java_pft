@@ -68,6 +68,9 @@ public class GroupData {
   public Set<ContactData> getContacts() {
     return new Contacts(contacts);
   }
+  /*public Contacts getContacts() {
+    return new Contacts(contacts) ;
+  }*/
 
   @Override
   public String toString() {

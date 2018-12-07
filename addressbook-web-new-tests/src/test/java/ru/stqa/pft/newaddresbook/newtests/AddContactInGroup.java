@@ -7,6 +7,8 @@ import ru.stqa.pft.newaddresbook.newmodel.Contacts;
 import ru.stqa.pft.newaddresbook.newmodel.GroupData;
 import ru.stqa.pft.newaddresbook.newmodel.Groups;
 
+import java.util.Set;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -33,28 +35,61 @@ public class AddContactInGroup extends TestBase {
 
   @Test
   public void testAddContactInGroup() {
-    Groups group = app.db().groups();
-    Contacts before = app.db().contacts();
-
-    GroupData addedGroup = group.iterator().next();
-    ContactData selectContact = before.iterator().next();
+    //Выбираем все группы и контакты
+    Groups allGroups = app.db().groups();
+    Contacts allContacts = app.db().contacts();
+    //Строим множества контактов
+    ContactData contactForAdd = findAnyContact(allContacts);
+    //
+    Groups beforeAddContactToGroup = contactForAdd.getGroups();
+    //Проверяем группы для контакта
+    checkCreateGroup(allGroups, contactForAdd);
+    //Выбираем пару, контакт + группу
+     GroupData emptyGroup = findGroupForContact(contactForAdd);
 
     app.goTo().contactPage();
-    //выбор контакта
-    app.contact().selectContactById(selectContact.getId());
-    //wd.findElement(By.id("151")).click();
-    //раскрытие списка групп
-    app.contact().selectToGroup();
-    //выбор из списка группу
-    app.contact().selectedNameGroup();
-    //клик по кнопке добавления
-    app.contact().inputAdd();
-    //переход по ссылке
-    //app.contact().returnToHomePage();
-    app.contact().inputGroupPage();
+    app.contact().addContactToGroup(contactForAdd.getId(), emptyGroup.getId());
 
-    Contacts after = app.db().contacts();
-    assertThat(after, equalTo(before.without(selectContact).withAdded(selectContact.inGroup(addedGroup))));
+    Contacts allContactsAfeterAdd = app.db().contacts();
+    ContactData updatedContact = findUpdatedContact(allContactsAfeterAdd, contactForAdd);
+    Groups afterAddContactToGroup = updatedContact.getGroups();
+
+
+    assertThat(afterAddContactToGroup.without(emptyGroup), equalTo(beforeAddContactToGroup));
+  }
+
+  private ContactData findUpdatedContact(Contacts allContacts, ContactData contactForAdd) {
+    ContactData updatedContact = null;
+    for (ContactData contact : allContacts) {
+      updatedContact = null;
+      if (contact.equals(contactForAdd)) {
+        updatedContact = contact;
+      }
+    }
+    return updatedContact;
+  }
+
+  private GroupData findGroupForContact(ContactData contactForAdd) {
+    Groups groups = app.db().groups();
+    GroupData emptyGroup = null;
+    for (GroupData group : groups) {
+      if (!group.getContacts().contains(contactForAdd)) {
+        emptyGroup = group;
+      }
+    }
+    return emptyGroup;
+  }
+
+  private void checkCreateGroup(Groups allGroups, ContactData contactForAdd) {
+    if (contactForAdd.getGroups().size() == allGroups.size()) {
+      app.goTo().groupPage();
+      app.group().create(new GroupData().withName("Test1"));
+    }
+  }
+
+  private ContactData findAnyContact(Set allContacts) {
+    ContactData contact = (ContactData) allContacts.iterator().next();
+    return contact;
   }
 
 

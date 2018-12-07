@@ -213,4 +213,12 @@ public class ContactHelper extends HelperBase {
   public void selectGroupById(int groupID) {
     wd.findElement(By.cssSelector("select[name='group'] option[value='" + groupID + "'")).click();
   }
+
+  public void addContactToGroup(int contactID, int groupID) {
+    selectContactById(contactID);
+    selectToGroup();
+    //selectGroupById(groupID);
+    wd.findElement(By.cssSelector("select[name='group'] option[value='" + groupID + "'")).click();
+    inputAdd();
+  }
 }
