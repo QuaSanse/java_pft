@@ -11,7 +11,14 @@ import ru.stqa.pft.mantis.model.Users;
 import java.util.List;
 
 public class DbHelper {
+  private ApplicationManager app;
   private final SessionFactory sessionFactory;
+
+  public DbHelper(ApplicationManager app, SessionFactory sessionFactory) {
+    this.app = app;
+    this.sessionFactory = sessionFactory;
+  }
+
 
   public DbHelper() {
     //Настраивается один раз для приложения

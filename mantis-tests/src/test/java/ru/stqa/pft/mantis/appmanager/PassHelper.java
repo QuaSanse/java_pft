@@ -9,6 +9,7 @@ public class PassHelper extends HelperBase {
   }
 
   public void linkManageUsers() {
+    click((By.linkText("Manage")));
     click((By.linkText("Manage Users")));
   }
 

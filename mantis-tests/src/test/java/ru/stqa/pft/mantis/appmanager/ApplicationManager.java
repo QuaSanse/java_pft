@@ -1,5 +1,6 @@
 package ru.stqa.pft.mantis.appmanager;
 
+import org.hibernate.SessionFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -23,6 +24,8 @@ public class ApplicationManager {
   private JamesHelper jamesHelper;
   private PassHelper passHelper;
   private DbHelper dbHelper;
+  private SessionFactory sessionFactory;
+  private SoapHelper soapHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -84,9 +87,22 @@ public class ApplicationManager {
     return passHelper;
   }
 
+  public SoapHelper soap() {
+    if (soapHelper == null) {
+      soapHelper = new SoapHelper(this);
+    }
+    return soapHelper;
+  }
   public DbHelper db() {
+    if (dbHelper == null) {
+      dbHelper = new DbHelper(this, sessionFactory);
+    }
     return dbHelper;
   }
+
+  //public DbHelper db() {
+   // return dbHelper;
+  //}
 
   public WebDriver getDriver() {
     if (wd == null) {
