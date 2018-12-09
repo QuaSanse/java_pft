@@ -1,7 +1,6 @@
 package ru.stqa.pft.mantis.appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 public class RegistrationHelper extends HelperBase{
 
@@ -15,6 +14,13 @@ public class RegistrationHelper extends HelperBase{
     type(By.name("username"), username);
     type(By.name("email"), email);
     click(By.cssSelector("input[value='Signup']"));
+  }
+
+  public void startAdmin(String username, String password) {
+    wd.get(app.getProperty("web.baseUrl") + "/login_page.php");
+    type(By.name("username"), username);
+    type(By.name("password"), password);
+    click(By.cssSelector("input[value='Login']"));
   }
 
   public void finish(String confirmationLink, String password) {

@@ -1,7 +1,5 @@
 package ru.stqa.pft.mantis.model;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -23,12 +21,15 @@ public class UserData {
   @Column(name = "email")
 
   private String email;
+
   public int getId() {
     return id;
   }
+
   public String getUsername() {
     return username;
   }
+
   public String getEmail() {
     return email;
   }

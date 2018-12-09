@@ -1,6 +1,5 @@
 package ru.stqa.pft.mantis.appmanager;
 
-import org.apache.http.impl.client.HttpClients;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -28,7 +27,7 @@ public class ApplicationManager {
   public ApplicationManager(String browser) {
     this.browser = browser;
     properties = new Properties();
-    }
+  }
 
   public void init() throws IOException {
     dbHelper = new DbHelper();
@@ -63,24 +62,28 @@ public class ApplicationManager {
     }
     return ftp;
   }
+
   public MailHelper mail() {
     if (mailHelper == null) {
       mailHelper = new MailHelper(this);
     }
     return mailHelper;
   }
+
   public JamesHelper james() {
     if (jamesHelper == null) {
       jamesHelper = new JamesHelper(this);
     }
     return jamesHelper;
   }
+
   public PassHelper pass() {
     if (passHelper == null) {
       passHelper = new PassHelper(this);
     }
     return passHelper;
   }
+
   public DbHelper db() {
     return dbHelper;
   }
