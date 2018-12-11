@@ -51,7 +51,7 @@ public class AddContactInGroup extends TestBase {
     app.contact().addContactToGroup(contactForAdd.getId(), emptyGroup.getId());
 
     Contacts allContactsAfeterAdd = app.db().contacts();
-    ContactData updatedContact = findUpdatedContact(allContactsAfeterAdd, contactForAdd);
+    ContactData updatedContact = findUpdatedContact(allContactsAfeterAdd, contactForAdd.inGroup(emptyGroup));
     Groups afterAddContactToGroup = updatedContact.getGroups();
 
 

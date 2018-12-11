@@ -62,6 +62,7 @@ public class ContactHelper extends HelperBase {
   public void selectContactById(int id) {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
     //wd.findElement(By.cssSelector(String.format("input[value='%s']", id)));
+    //wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
   }
 
   public void submitContactDeletion() {
@@ -175,14 +176,16 @@ public class ContactHelper extends HelperBase {
     //wd.findElement(By.xpath(String.format("//tr[.//input[@value='%s']]/td[8]/a", id))).click();
     //wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']", id))).click();
   }
-  public void selectToGroup() {
-    wd.findElement(By.name("to_group")).click();
+  public void clickSelectToGroup() {
+    //wd.findElement(By.name("to_group")).click();
+    click(By.name("to_group"));
   }
   public void selectedNameGroup() {
     wd.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Select all'])[1]/following::option[1]")).click();
   }
   public void inputAdd() {
     wd.findElement(By.name("add")).click();
+    //click(By.cssSelector("input[value='Add to']"));
   }
 
   public void inputGroupPage() {
@@ -215,10 +218,10 @@ public class ContactHelper extends HelperBase {
   }
 
   public void addContactToGroup(int contactID, int groupID) {
+
     selectContactById(contactID);
-    selectToGroup();
-    //selectGroupById(groupID);
-    wd.findElement(By.cssSelector("select[name='group'] option[value='" + groupID + "'")).click();
+    clickSelectToGroup();
+    click(By.cssSelector("select[name='to_group'] option[value='" + groupID + "']"));
     inputAdd();
   }
 }
