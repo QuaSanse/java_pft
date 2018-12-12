@@ -19,7 +19,7 @@ public class TestBase {
     JsonElement parsed = new JsonParser().parse(json);
     JsonObject parsedObject = parsed.getAsJsonObject();
     String state = parsedObject.get("issues").getAsJsonArray().get(0).getAsJsonObject().get("state_name").toString();
-    if (state.equals("resolved")){
+    if (state.equals("Closed")){
       return false;
     }
     return true;
