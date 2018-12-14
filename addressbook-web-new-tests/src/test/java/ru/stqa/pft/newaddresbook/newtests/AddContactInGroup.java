@@ -51,11 +51,13 @@ public class AddContactInGroup extends TestBase {
     app.contact().addContactToGroup(contactForAdd.getId(), emptyGroup.getId());
 
     Contacts allContactsAfeterAdd = app.db().contacts();
+    //Получаем не пустое значение
     ContactData updatedContact = findUpdatedContact(allContactsAfeterAdd, contactForAdd.inGroup(emptyGroup));
     Groups afterAddContactToGroup = updatedContact.getGroups();
 
 
     assertThat(afterAddContactToGroup.without(emptyGroup), equalTo(beforeAddContactToGroup));
+
   }
 
   private ContactData findUpdatedContact(Contacts allContacts, ContactData contactForAdd) {
